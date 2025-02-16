@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import './../styles/App.css';
+import Api from '../../config/Api.js';
 import { useDispatch, useSelector } from "react-redux";
 import { setBooks } from "../components/Books";
 import 'regenerator-runtime/runtime';
-const Api = require('../../config/Api');
 
 const App = () => {
   const dispatch = useDispatch();
@@ -47,71 +47,71 @@ const App = () => {
       }
       setSortedBooks(sortedArray);
     } else {
-      setSortedBooks([]);
+      setSortedBooks([]); 
     }
   }, [sortBy, ordered, books]);
 
   return (
     <div>
-      <h1>Books List</h1>
-      <div style={{ display: 'flex' }}>
-        <div className="dropdown" style={{ marginRight: '10px' }}>
-          <label htmlFor="sort-by">
-            Sort by:
-            <select
-              id="sort-by"
-              value={sortBy}
-              onChange={e => setSortBy(e.target.value)}
-            >
-              <option value="Title">Title</option>
-              <option value="Author">Author</option>
-              <option value="Publisher">Publisher</option>
-            </select>
-          </label>
-          <label htmlFor="order">
-            Order:
-            <select
-              id="order"
-              value={ordered}
-              onChange={e => setOrdered(e.target.value)}
-            >
-              <option value="Ascending">Ascending</option>
-              <option value="Descending">Descending</option>
-            </select>
-          </label>
-        </div>
-      </div>
-
-      <div id='books'>
-        {sortedBooks.length > 0 ? (
-          <table>
-            <thead>
-              <tr>
-                <th className="book_title">Title</th>
-                <th className="book_author">Author</th>
-                <th className="book_publisher">Publisher</th>
-                <th className="book_ISBN">ISBN</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                sortedBooks.map((book, index) => (
-                  <tr key={index} className="book" style={{ height: '50px' }}>
-                    <td className="book_title">{book.title}</td>
-                    <td className="book_author">{book.author}</td>
-                    <td className="book_publisher">{book.publisher}</td>
-                    <td className="book_ISBN">{book.primary_isbn10}</td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
-        ) : (
-          <p>No books available</p>
-        )}
+    <h1>Books List</h1>
+    <div style={{ display: 'flex' }}>
+      <div className="dropdown" style={{ marginRight: '10px' }}>
+        <label htmlFor="sort-by">
+          Sort by:
+          <select
+            id="sort-by"
+            value={sortBy}
+            onChange={e => setSortBy(e.target.value)}
+          >
+            <option value="Title">Title</option>
+            <option value="Author">Author</option>
+            <option value="Publisher">Publisher</option>
+          </select>
+        </label>
+        <label htmlFor="order">
+          Order:
+          <select
+            id="order"
+            value={ordered}
+            onChange={e => setOrdered(e.target.value)}
+          >
+            <option value="Ascending">Ascending</option>
+            <option value="Descending">Descending</option>
+          </select>
+        </label>
       </div>
     </div>
-  );
-}
+  
+    <div id='books'>
+      {sortedBooks.length > 0 ? (
+        <table>
+          <thead>
+            <tr>
+              <th className="book_title">Title</th>
+              <th className="book_author">Author</th>
+              <th className="book_publisher">Publisher</th>
+              <th className="book_ISBN">ISBN</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              sortedBooks.map((book, index) => (
+                <tr key={index} className="book" style={{ height: '50px' }}>
+                  <td className="book_title">{book.title}</td>
+                  <td className="book_author">{book.author}</td>
+                  <td className="book_publisher">{book.publisher}</td>
+                  <td className="book_ISBN">{book.primary_isbn10}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      ) : (
+        <p></p>
+      )}
+    </div>
+  </div>
+);
+}  
 
 export default App;

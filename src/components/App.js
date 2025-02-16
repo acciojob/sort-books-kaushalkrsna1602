@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import './../styles/App.css';
-import Api from '../../config/Api.js';
 import { useDispatch, useSelector } from "react-redux";
 import { setBooks } from "../components/Books";
 import 'regenerator-runtime/runtime';
+const Api = require('../../config/Api');
+
 
 const App = () => {
   const dispatch = useDispatch();
